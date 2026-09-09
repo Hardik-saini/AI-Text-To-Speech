@@ -1,0 +1,48 @@
+import type { Metadata } from "next";
+import { Geist_Mono, Inter } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "sonner";
+import { ClerkProvider } from "@clerk/nextjs"
+import { TRPCReactProvider } from "@/trpc/client";
+import { NuqsAdapter } from "nuqs/adapters/next/app"
+
+const inter = Inter({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "AI Text to Speech",
+    template: "%s | AI Text to Speech"
+  },
+  description: "Text to speech and Voice cloning platform",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <ClerkProvider>
+      <TRPCReactProvider>
+        <html lang="en">
+          <body
+            className={`${inter.variable} ${geistMono.variable} antialiased`}
+          >
+            <NuqsAdapter>
+              {children}
+            </NuqsAdapter>
+            <Toaster />
+          </body>
+        </html>
+      </TRPCReactProvider>
+    </ClerkProvider>
+  );
+}
