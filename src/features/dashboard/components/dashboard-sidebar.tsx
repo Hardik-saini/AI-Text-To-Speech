@@ -103,7 +103,7 @@ export function DashboardSidebar() {
         },
         {
             title: "Help and Support",
-            url: "mailto:adwait.badoni@gmail.com",
+            url: "mailto:sainihardik1104@gmail.com",
             icon: Headphones,
         },
     ];
